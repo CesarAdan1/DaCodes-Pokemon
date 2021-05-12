@@ -1,4 +1,5 @@
 import React from 'react'
+import PokemonDescription from '../components/items/PokemonDescription';
 
 const PokemonFilterResultsView = () => {
     return (

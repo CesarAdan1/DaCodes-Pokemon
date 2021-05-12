@@ -9,10 +9,16 @@ import {
 } from '../views';
 import '../static/styles/container.scss';
 
+
+import Header from '../components/common/Header';
+import Footer from '../components/common/Footer';
+
 const Routes = (props) => {
     return (
         <Router>
+            <Header />
             <Switch>
+                <div className="route_cont">
                 <Route exact path="/">
                     <TitleComponent title="Pokemon API Dacodes" />
                     <PokemonMainView />
@@ -29,7 +35,9 @@ const Routes = (props) => {
                     <TitleComponent title={`Resultados con pokemon ${props.name}`} />
                     <PokemonFilterResultsView />
                 </Route>
+                </div>
             </Switch>
+            <Footer />
         </Router>
     )
 }
