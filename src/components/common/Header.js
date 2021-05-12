@@ -9,7 +9,7 @@ const Header = ({ onChange, onClick }) => {
         <header className="header">
             <div className="header__container">
             <div>
-        <img src={imgUrl} alt="pokeapi-logo" className="navbar-image" />
+        <img src={imgUrl} alt="pokeapi-logo" style={{width: '160px', overflow: 'hidden !important'}} />
       </div>
                 <form className="header__form">
                     <input 

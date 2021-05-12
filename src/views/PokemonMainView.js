@@ -34,13 +34,13 @@ const PokemonMainView = (props) => {
                 )
             : (
                 <div className="main-pokemon__container">
-                    {pokemon.map((poke) => (
+                    {/* {pokemon.map((poke) => (
                         <PokemonDescription
                             key={poke.name}
                             pokemonName={poke.name}
                             srcPokemon={poke.url}
                         />
-                    ))}
+                    ))} */}
                 </div>
             )
              }
