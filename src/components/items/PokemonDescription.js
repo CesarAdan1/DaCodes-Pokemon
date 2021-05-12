@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const PokemonDescription = (pokemonName, srcPokemon) => {
+const PokemonDescription = ({pokemonName, srcPokemon}) => {
     return (
         <div>
             <figure>
