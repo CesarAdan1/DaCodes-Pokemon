@@ -1,5 +1,5 @@
 import React from "react";
-import { LeftArrow, RightArrow } from ".Arrow";
+import { LeftArrow, RightArrow } from "./Arrow";
 
 const Pagination = (props) => {
   const { onLeftClick, onRightClick, page, totalPages } = props;
