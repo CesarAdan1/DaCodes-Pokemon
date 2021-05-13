@@ -2,28 +2,28 @@ import React from 'react'
 import '../../static/styles/header.scss';
 
 const Header = ({ onChange, onClick }) => {
-    let imgUrl =
-    "https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png";
+    let imgUrl = "https://assets.pokemon.com/assets/cms2-es-xl/img/misc/gus/buttons/logo-pokemon-79x45.png"
 
     return (
         <header className="header">
             <div className="header__container">
             <div>
-        <img src={imgUrl} alt="pokeapi-logo" style={{width: '160px', overflow: 'hidden !important'}} />
+        <img src={imgUrl} alt="pokeapi-logo" />
       </div>
                 <form className="header__form">
                     <input 
-                        className="header_input"
+                        className="header__input"
                         type="text"
                         autoComplete="off"
                         aria-label="auto"
+                        maxLegngth="130"
                         onChange={onChange}
                         placeholder="Buscar por tipo, nombre, numero, ..."
                     />
                     <button 
-                     className="header_btn"
+                     className="header__btn"
                      onClick={onClick}>
-                        O
+                        o
                     </button>
                 </form>
             </div>

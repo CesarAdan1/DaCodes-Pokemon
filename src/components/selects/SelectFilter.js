@@ -9,7 +9,10 @@ const SelectFilter = ({ name, value }) => {
                 name={name}
             >
                 <option value={value} className="selected-filter__option">
-                    Selecciona Categoría
+                    Inglés
+                </option>
+                <option value={value} className="selected-filter__option">
+                    Japonés
                 </option>
             </select>
         </div>

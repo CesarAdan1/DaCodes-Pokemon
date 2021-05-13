@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { PokeContext } from '../state/context/PokeContext';
 import PokemonDescription from '../components/items/PokemonDescription';
-import SelectFilter from '../components/search/SearchPage';
+import SelectFilter from '../components/selects/SelectFilter';
 import Pagination from '../components/common/Pagination';
-
+import '../static/styles/main-view.scss';
 
 const PokemonMainView = (props) => {
 
@@ -41,7 +41,16 @@ const PokemonMainView = (props) => {
                             srcPokemon={poke.url}
                         />
                     ))} */}
+                    <PokemonDescription 
+                        pokemonName="Bulbasaur"
+                        
+                    />
+                    <Pagination 
+                        page="1"
+                        totalPages="20"
+                    />
                 </div>
+                
             )
              }
         </div>
