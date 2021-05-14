@@ -126,6 +126,7 @@ $text-obscure: #0e1318;
     &__icon {
         overflow: hidden;
         text-align: center;
+        cursor: pointer;
     }
 
     &__search {
