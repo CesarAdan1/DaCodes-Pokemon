@@ -8,6 +8,7 @@ const PokemonDescription = (props) => {
     console.log(props)
     const { pokemon } = props;
 
+    const { catchedPokemon, savedIdPokemon } = useContext( CatchedPokemonContext );
 
     const PokeballRed = <img
         alt="Pokeball"
@@ -17,11 +18,12 @@ const PokemonDescription = (props) => {
     />;
 
     const pokeballGray = <PokeballGray />;
-    //const heart = catchedPokemon.includes(pokemon.pokemonName) ? redHeart : blackHeart;
 
-    const clickHeart = (e) => {
+    const catchem = catchedPokemon.includes(pokemon.name) ? PokeballRed : PokeballGray;
+
+    const catchPokemon = (e) => {
         e.preventDefault();
-        updateFavoritePokemons(pokemon);
+        savedIdPokemon(pokemon.name);
     };
 
     return (
@@ -34,8 +36,8 @@ const PokemonDescription = (props) => {
                             src="" alt={pokemon.name}
                         />
                     </Link>
-                    <button onClick={clickHeart} className="pokemon-item__heart-btn">
-                    <div className="pokemon-item__favorite">{PokeballRed}</div>
+                    <button onClick={catchPokemon} className="pokemon-item__heart-btn">
+                    <div className="pokemon-item__favorite">{catchem}</div>
                 </button>
                 </figure>
                 <div className="pokemon-item__poke--info">
@@ -43,9 +45,14 @@ const PokemonDescription = (props) => {
                     {" "}<span className="pokemon-item__number--prefix">N.º</span>{" "}{pokemon.id}
                 </p>
                 <h5 className="pokemon-item__name">{props.pokemonName}</h5>
-                <div className="pokemon-item__abilities">
-                    <span className="pokemon-item__type">Planta</span>
-                </div>
+                {/* {pokemon.types.map((type, id) => (
+                     <div key={id} className="pokemon-item__abilities">
+                        <span className="pokemon-item__type">{type.type.name}</span>
+                    </div>
+                ))} */}
+                 <div className="pokemon-item__abilities">
+                        <span className="pokemon-item__type">Hierba</span>
+                    </div>
                 </div>
                 <div className="pokemon-item__card-bottom">
                     <button className="pokemon-item__btn-more" onClick={props.onClickModal}>Ver más</button>

@@ -16,7 +16,8 @@ const CatchedPokemonProvider = (props) => {
     return (
         <CatchedPokemonContext.Provider
             value={{
-                
+                catchedPokemon,
+                saveIdPokemon
             }}
         >
             {props.children}

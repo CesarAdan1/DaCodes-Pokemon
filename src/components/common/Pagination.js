@@ -12,7 +12,7 @@ const Pagination = (props) => {
           <LeftArrow />
         </div>
       </button>
-      <div pagination__page>
+      <div className="pagination__page">
         {page}{" "} de {" "} {totalPages}
       </div>
       <button className="pagination__btn" onClick={onRightClick}>

@@ -22,15 +22,11 @@
             margin-bottom: 70px;
           }
 
-        &__container:after {
-            content: "";
-		border-top: 40px solid #b0b0b0;
-		border-left: 40px solid #c00d0d;
-		height: 0;
-
-		position: absolute;
-		bottom: 0;
-		left: 0;
+        &__message {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            color: white;
         }
     }
 }
@@ -46,6 +42,13 @@
             margin: 0 5%;
             margin-bottom: 70px;
           }
+
+          &__message {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            color: white;
+        }
     }
 }
 
@@ -60,6 +63,13 @@
             margin: 0 5%;
             margin-bottom: 70px;
           }
+
+          &__message {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            color: white;
+        }
     }
 }
 
@@ -74,6 +84,13 @@
             margin: 0 5%;
             margin-bottom: 70px;
           }
+
+          &__message {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            color: white;
+        }
     }
 }
 
@@ -88,5 +105,12 @@
             margin: 0 5%;
             margin-bottom: 70px;
           }
+
+          &__message {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            color: white;
+        }
     }
 }
