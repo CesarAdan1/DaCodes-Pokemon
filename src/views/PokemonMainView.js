@@ -7,14 +7,11 @@ import '../static/styles/main-view.scss';
 
 import Modal from '../components/modal/Modal'
 
+
 const PokemonMainView = (props) => {
-
-    const { pokemon } = useContext(PokeContext);
-
-    console.log(pokemon);
-
-    const { poke, page, setPage, total, loading } = props;
-
+    console.log("main" + props)
+    const { pokemon, loading, page, total, setPage } = useContext(PokeContext);
+    console.log(pokemon + "you")
     const lastPage = () => {
         const nextPage = Math.max(page - 1, 0);
         setPage(nextPage);
@@ -28,33 +25,38 @@ const PokemonMainView = (props) => {
     return (
         <div className="main-pokemon">
             <div className="main-pokemon__header">
-                <SelectFilter />
+                <SelectFilter 
+                    name=""
+                    value=""
+                />
+                <Pagination
+                    page={page + 1}
+                    totalPages={total}
+                    onLeftClick={lastPage}
+                    onRightClick={nextPage}
+                />
             </div>
-            <Pagination 
-                page="1"
-                totalPages="20"
-            />
-            {loading ? 
+
+            {loading ?
                 (
                     <div>Cargando pokemon...</div>
                 )
-            : (
-                <div className="main-pokemon__container">
-                    {/* {pokemon.map((poke) => (
-                        <PokemonDescription
-                            key={poke.name}
-                            pokemonName={poke.name}
-                            srcPokemon={poke.url}
-                        />
-                    ))} */}
-                    <PokemonDescription 
-                        pokemonName="Bulbasaur"
-                        
-                    />
-                </div>
-                
-            )
-             }
+                : (
+                    <div className="main-pokemon__container">
+                        {
+                            pokemon.map((poke, id) => (
+
+                                <PokemonDescription
+                                    key={id + 1}
+                                    pokemon={poke}
+                                />
+                            ))
+                        }
+                        {console.log(pokemon.map((poke) => poke.name))}
+                    </div>
+
+                )
+            }
         </div>
     )
 }

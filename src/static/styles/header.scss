@@ -2,7 +2,8 @@ $--header-color: #ffff;
 $--header-color-text: #919191;
 
 .header {
-        padding: 10px 0;
+    background-color: #F51953 !important;
+    padding: 10px 0;
     display: flex;
     width: 100vw;
     height: 56px;
@@ -14,7 +15,7 @@ $--header-color-text: #919191;
     &__container {
         display: flex;
         flex-direction: row;
-        justify-content: center ;
+        justify-content: center;
         align-items: center;
     }
 
@@ -26,7 +27,7 @@ $--header-color-text: #919191;
 }
 
 @media screen and (min-width: 800px) {
- .header {
+    .header {
 
         padding: 10px 0;
         border-bottom: 1px solid #000;
@@ -43,13 +44,14 @@ $--header-color-text: #919191;
         }
 
         &__form {
-           border: 1px solid gray;
-    display: flex;
-    align-items: center;
-    padding: 0px 0px 0px 13px;
-    width: 22%;
-    height: 26px;
-    border-radius: 14px;
+            border: 1px solid gray;
+            display: flex;
+            align-items: center;
+            padding: 0px 0px 0px 13px;
+            width: 22%;
+            height: 26px;
+            border-radius: 14px;
+            background: white;
         }
 
         &__input {
@@ -93,13 +95,14 @@ $--header-color-text: #919191;
         }
 
         &__form {
-           border: 1px solid gray;
-    display: flex;
-    align-items: center;
-    padding: 0px 0px 0px 13px;
-    width: 22%;
-    height: 26px;
-    border-radius: 14px;
+            border: 1px solid gray;
+            display: flex;
+            align-items: center;
+            padding: 0px 0px 0px 13px;
+            width: 22%;
+            height: 26px;
+            border-radius: 14px;
+            background: white;
         }
 
         &__input {
@@ -117,6 +120,7 @@ $--header-color-text: #919191;
             color: white;
             margin-right: 0 !important;
         }
+
         img {
             width: 160px;
             overflow: hidden !important;

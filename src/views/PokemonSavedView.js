@@ -1,4 +1,5 @@
 import React from 'react'
+import { pokeLeave } from '../utils/poke-storage';
 
 const PokemonSavedView = () => {
     return (

@@ -5,11 +5,12 @@
 
     &__header {
         display: flex;
-    width: 100%;
-   
-    justify-content: flex-end;
-    flex-direction: flex-end;
-    margin: 15px -13px;
+        width: 100%;
+        align-items: center !important;
+        flex-direction: row-reverse;
+        justify-content: space-around;
+        flex-direction: flex-end;
+        margin: 9px -13px;
     }
 }
 

@@ -10,7 +10,7 @@ const LanguageProvider = (props) => {
     useEffect(() => {
 
     }, []);
-    
+
     return (
         <LanguageContext.Provider>
             {props.children}
@@ -18,4 +18,4 @@ const LanguageProvider = (props) => {
     )
 }
 
-export default ModalProvider;
+export default LanguageProvider;

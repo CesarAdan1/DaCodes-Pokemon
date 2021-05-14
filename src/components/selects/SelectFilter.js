@@ -1,7 +1,10 @@
 import React from 'react';
 import '../../static/styles/select.scss';
 
-const SelectFilter = ({ name, value }) => {
+const SelectFilter = (props) => {
+
+    const { name, value } = props;
+
     return (
         <div>
             <select
