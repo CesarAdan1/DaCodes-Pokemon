@@ -5,6 +5,8 @@ import SelectFilter from '../components/selects/SelectFilter';
 import Pagination from '../components/common/Pagination';
 import '../static/styles/main-view.scss';
 
+import Modal from '../components/modal/Modal'
+
 const PokemonMainView = (props) => {
 
     const { pokemon } = useContext(PokeContext);
@@ -28,6 +30,10 @@ const PokemonMainView = (props) => {
             <div className="main-pokemon__header">
                 <SelectFilter />
             </div>
+            <Pagination 
+                page="1"
+                totalPages="20"
+            />
             {loading ? 
                 (
                     <div>Cargando pokemon...</div>
@@ -44,10 +50,6 @@ const PokemonMainView = (props) => {
                     <PokemonDescription 
                         pokemonName="Bulbasaur"
                         
-                    />
-                    <Pagination 
-                        page="1"
-                        totalPages="20"
                     />
                 </div>
                 

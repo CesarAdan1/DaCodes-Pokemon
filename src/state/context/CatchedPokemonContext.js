@@ -1,10 +1,15 @@
 import React, { createContext, useState, useEffect } from 'react';
 
-const CatchedPokemonContext = createContext({
-    catchedPokemon: [],
-    updateCatchedPokemon: (id) => null
-});
+export const CatchedPokemonContext = createContext();
 
-export const CatchedPokemonProvider = CatchedPokemonContext.Provider;
+const CatchedPokemonProvider = (props) => {
 
-export default CatchedPokemonContext;
+    return (
+        <CatchedPokemonContext.Provider>
+            {props.children}
+        </CatchedPokemonContext.Provider>
+    )
+
+}
+
+export default CatchedPokemonProvider;

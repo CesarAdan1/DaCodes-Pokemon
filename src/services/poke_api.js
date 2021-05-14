@@ -3,18 +3,16 @@ import axios from 'axios';
 
 export const searchPokemon = async (pokemon) => {
     try {
-        let urlPokemon = `${getAllPokemon}/${pokemon}`
+        let urlPokemon = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
         const dataSearch =  await axios.get(urlPokemon)
-        return dataSearch;
+        return console.log(dataSearch);
     } catch(err) {}
 }
 
 export const getPokemon = async (limit = 5, offset = 0) => {
     try {
-        let urllimit = `/&limit=${limit}`;
-        let urloffset = `/?offset=${offset}`;
-        let data = `${base_uri}${pokemon}${urllimit}${urloffset}`;
-        const full = data.results;
+        let data = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
+        const full = data
         return console.log("data " + full)
 
     } catch(err) {}

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import '../../static/styles/pokemon.scss'
 import CatchedPokemonContext from '../../state/context/CatchedPokemonContext';
 
+
 const PokemonDescription = (props) => {
     const { pokemon } = props;
  
@@ -17,7 +18,7 @@ const PokemonDescription = (props) => {
   };
 
     return (
-        <div className="pokemon-item">
+        <div data-testid="item-container" className="pokemon-item">
             <figure className="pokemon-item__fg">
                 <Link to={`/pokemon/${props.pokemonName}`} title={props.pokemonName}>
                     <img className="pokemon-item__img" width="90" height="90" 

@@ -21,15 +21,19 @@
   "author": "César Adán Juárez Calderón",
   "license": "ISC",
   "dependencies": {
+    "@babel/types": "^7.14.2",
     "@sentry/browser": "^5.21.1",
+    "@testing-library/react": "^11.2.6",
     "axios": "^0.21.1",
     "date-fns": "^2.21.2",
     "i18next": "^20.2.2",
+    "jest-dom": "^4.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^5.2.1",
     "react-router-dom": "^5.2.0",
     "react-svg-loader": "^3.0.3",
+    "react-test-render": "^1.1.2",
     "source-map-loader": "^0.2.4"
   },
   "devDependencies": {
