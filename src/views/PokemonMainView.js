@@ -39,7 +39,7 @@ const PokemonMainView = (props) => {
 
             {loading ?
                 (
-                    <div>Cargando pokemon...</div>
+                    <div className="main-pokemon__container">Cargando pokemon...</div>
                 )
                 : (
                     <div className="main-pokemon__container">

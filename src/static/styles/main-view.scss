@@ -35,6 +35,33 @@
     }
 }
 
+@media screen and (min-width: 510px) {
+    .main-pokemon {
+        &__container {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap !important;
+            flex-wrap: wrap !important;
+            padding: 0 4px;
+            margin: 0 5%;
+            margin-bottom: 70px;
+          }
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .main-pokemon {
+        &__container {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap !important;
+            flex-wrap: wrap !important;
+            padding: 0 4px;
+            margin: 0 5%;
+            margin-bottom: 70px;
+          }
+    }
+}
 
 @media screen and (min-width: 800px) {
     .main-pokemon {

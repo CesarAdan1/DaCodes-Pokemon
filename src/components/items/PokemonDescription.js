@@ -48,7 +48,7 @@ const PokemonDescription = (props) => {
                 </div>
                 </div>
                 <div className="pokemon-item__card-bottom">
-                    <button className="pokemon-item__btn-more">Ver más</button>
+                    <button className="pokemon-item__btn-more" onClick={props.onClickModal}>Ver más</button>
                 </div> 
                 
             </li>
