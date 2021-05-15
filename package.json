@@ -9,7 +9,7 @@
     "dev": "webpack-dev-server --watch --config webpack.config.dev.js",
     "prebuild": "npm run clean",
     "deploy": "aws s3 cp ./build s3://${S3BUCKET}/ --recursive",
-    "test": "jest",
+    "test": "jest --verbose",
     "clean": "rm -rf build/*",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage --colors",
@@ -25,8 +25,10 @@
     "@sentry/browser": "^5.21.1",
     "@testing-library/react": "^11.2.6",
     "axios": "^0.21.1",
+    "babel-preset-jest": "^26.6.2",
     "date-fns": "^2.21.2",
     "i18next": "^20.2.2",
+    "identity-obj-proxy": "^3.0.0",
     "jest-dom": "^4.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -45,7 +47,7 @@
     "@babel/plugin-transform-react-constant-elements": "^7.13.13",
     "@babel/plugin-transform-react-inline-elements": "^7.12.13",
     "@babel/plugin-transform-runtime": "^7.13.15",
-    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-env": "^7.14.2",
     "@babel/preset-react": "^7.13.13",
     "@babel/runtime": "^7.13.17",
     "@svgr/webpack": "^5.5.0",
@@ -89,7 +91,7 @@
     "react-hot-loader": "^4.13.0",
     "react-redux": "^7.2.1",
     "react-scripts": "^3.4.3",
-    "react-test-renderer": "^16.13.1",
+    "react-test-renderer": "^16.14.0",
     "resolve-url-loader": "^3.1.2",
     "sass-loader": "^10.1.1",
     "terser-webpack-plugin": "^4.2.3",
@@ -117,9 +119,32 @@
     ]
   },
   "jest": {
+    "verbose": true,
     "unmockedModulePathPatterns": [
-      "node_modules/react/",
-      "node_modules/enzyme/"
-    ]
+      "/node_modules/react",
+      "/node_modules/react-dom",
+      "/node_modules/react-addons-test-utils",
+      "/node_modules/fbjs"
+    ],
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!lodash-es/.*)",
+      "/build"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,mjs}"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "jsx"
+    ],
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+    }
   }
 }

@@ -1,11 +1,11 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 
-const TitleComponent = ({title}) => {
+const TitleComponent = (props) => {
     var defaultTitle = '*app';
     return (
         <Helmet>
-            <title>{title ? title : defaultTitle}</title>
+            <title>{props.title ? props.title : defaultTitle}</title>
         </Helmet>
     )
 }

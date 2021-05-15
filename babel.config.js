@@ -1,18 +1,18 @@
-{
-    "presets": [
+module.exports = {
+    presets: [
       "@babel/preset-env",
       "@babel/preset-react"
     ],
-    "plugins": [
+    plugins: [
       "@babel/plugin-transform-runtime",
       "@babel/plugin-syntax-dynamic-import",
       "@babel/plugin-proposal-class-properties",
       "@babel/plugin-proposal-object-rest-spread",
     ],
-    "env": {
-      "production": {
-        "only": ["src"],
-        "plugins": [
+    env: {
+      production: {
+        only: ["src"],
+        plugins: [
           [
             "transform-react-remove-prop-types",
             {

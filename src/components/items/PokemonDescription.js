@@ -69,4 +69,3 @@ export const PokemonComplete = () => {
 
 
 export default PokemonDescription;
-
