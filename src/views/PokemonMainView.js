@@ -11,7 +11,7 @@ import Modal from '../components/modal/Modal'
 const PokemonMainView = (props) => {
     console.log("main" + props)
     const { pokemon, loading, page, total, setPage } = useContext(PokeContext);
-    console.log(pokemon + "you")
+    console.log("poke" + pokemon)
     const lastPage = () => {
         const nextPage = Math.max(page - 1, 0);
         setPage(nextPage);
@@ -52,7 +52,6 @@ const PokemonMainView = (props) => {
                                 />
                             ))
                         }
-                        {console.log(pokemon.map((poke) => poke.name))}
                     </div>
 
                 )

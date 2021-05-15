@@ -23,21 +23,37 @@ const PokemonProvider = (props) => {
         try {
             setLoading(true);
             const data = await getPokemon(5, 5 * page);
-            console.log(data.data.results.map((res) => (res.url)) + "you")
-            const promises = data.data.results.map(async (poke) => {
-                
-                return await getPokemonData(poke.url);
-            });
-            const results = await Promise.all(promises);
-            //console.log(results)
-            setPokemon(results);
+            console.log("mydata" + data)
+            let dataPoke = data.results.map(async (pokemon) => {
+                    let pokemonD = await getPokemonData(pokemon.url)
+                    return pokemonD;
+                })
+            let pokeData = await Promise.all(
+                dataPoke
+            )
+            
+            // data.results.map(async (poke) => {
+            //     console.log(poke.url + "url")
+            //     return await getPokemonData(poke.url);
+            // });
+            //const results = await Promise.all(promises);
+            console.log("result " + pokeData)
+            setPokemon(pokeData);
             setLoading(false);
             setTotal(Math.ceil(data.count / 5));
             setNotFound(false);
         } catch (err) {
             console.log(err)
-         }
+        }
     };
+
+    const showNotFound = () => {
+        return (
+            <div>
+                No se encontraron resultados
+            </div>
+        )
+    }
 
     //search
     useEffect(() => {
@@ -47,19 +63,26 @@ const PokemonProvider = (props) => {
     //show pokemon by 5
     useEffect(() => {
         getAllPokemon
-    }, [pokemon]);
+    }, []);
+
+    useEffect(() => {
+        setNotFound(notFound)
+    }, []);
+
+    const providerValuePoke = {
+        pokemon,
+        getSearchPokemon,
+        savedSearch,
+        loading,
+        page,
+        total,
+        setPage,
+        notFound
+    }
 
     return (
         <PokeContext.Provider
-            value={{
-                pokemon,
-                getSearchPokemon,
-                savedSearch,
-                loading,
-                page,
-                total,
-                setPage
-            }}
+            value={providerValuePoke}
         >
             {props.children}
         </PokeContext.Provider>

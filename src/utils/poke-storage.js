@@ -1,11 +1,11 @@
 import { POKEMON } from '../constants/constants'
 
 export const pokeCatch = () => { 
-    window.localStorage.getItem(POKEMON);
+    JSON.parse(window.localStorage.getItem(POKEMON));
 }
 
-export const pokeCatched = () => { 
-    window.localStorage.setItem(POKEMON);
+export const pokeCatched = (update) => { 
+    window.localStorage.setItem(POKEMON, JSON.stringify(update));
 }
 
 export const pokeLeave = () => {

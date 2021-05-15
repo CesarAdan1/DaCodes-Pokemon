@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom'
 import '../../static/styles/pokemon.scss'
 import { CatchedPokemonContext } from '../../state/context/CatchedPokemonContext';
 import PokeballGray from '../../static/icons/pokeball-gray.png';
+import Modal from '../modal/Modal';
+import { ModalContext } from '../../state/context/ModalContext';
 
 const PokemonDescription = (props) => {
-    console.log(props)
+   // console.log(props)
     const { pokemon } = props;
-
-    const { catchedPokemon, savedIdPokemon } = useContext( CatchedPokemonContext );
+    console.log(pokemon)
+    const { catchedPokemon, savedIdPokemon } = useContext(CatchedPokemonContext);
 
     const PokeballRed = <img
         alt="Pokeball"
@@ -19,52 +21,78 @@ const PokemonDescription = (props) => {
 
     const pokeballGray = <PokeballGray />;
 
-    const catchem = catchedPokemon.includes(pokemon.name) ? PokeballRed : PokeballGray;
+    //const catchem = catchedPokemon.includes(pokemon.name) ? PokeballRed : PokeballGray;
 
     const catchPokemon = (e) => {
         e.preventDefault();
         savedIdPokemon(pokemon.name);
     };
 
+
     return (
         <>
             <li data-testid="item-container" className="pokemon-item">
-            
+
                 <figure className="pokemon-item__fg">
-                    <Link to={`/pokemon/${props.pokemonName}`} title={props.pokemonName}>
-                        <img className="pokemon-item__img" 
-                            src="" alt={pokemon.name}
+                    <Link to={`/pokemon/${pokemon.name}`} title={pokemon.name}>
+                        <img className="pokemon-item__img"
+                            src={pokemon.sprites.front_default} 
+                            alt={pokemon.name}
                         />
                     </Link>
-                    <button onClick={catchPokemon} className="pokemon-item__heart-btn">
-                    <div className="pokemon-item__favorite">{catchem}</div>
-                </button>
                 </figure>
                 <div className="pokemon-item__poke--info">
-                <p className="pokemon-item__number">
-                    {" "}<span className="pokemon-item__number--prefix">N.º</span>{" "}{pokemon.id}
-                </p>
-                <h5 className="pokemon-item__name">{props.pokemonName}</h5>
-                {/* {pokemon.types.map((type, id) => (
-                     <div key={id} className="pokemon-item__abilities">
-                        <span className="pokemon-item__type">{type.type.name}</span>
-                    </div>
-                ))} */}
-                 <div className="pokemon-item__abilities">
-                        <span className="pokemon-item__type">Hierba</span>
+                    <p className="pokemon-item__number">
+                        {" "}
+                        <span className="pokemon-item__number--prefix">N.º</span>
+                        {" "}{pokemon.id}
+                    </p>
+                    <h5 className="pokemon-item__name">{pokemon.name}</h5>
+
+                    <div  className="pokemon-item__abilities">
+                         {pokemon.types.map((type, id) => ( 
+                            <span 
+                                key={id}
+                                className={ "pokemon-item__type" }
+                            >{type.type.name}</span>
+                        ))}
                     </div>
                 </div>
                 <div className="pokemon-item__card-bottom">
-                    <button className="pokemon-item__btn-more" onClick={props.onClickModal}>Ver más</button>
-                </div> 
-                
+                    <button className="pokemon-item__btn-more" 
+                    onClick={props.onClickModal}>Ver más</button>
+                </div>
+
             </li>
+            
         </>
     )
 }
 
-export const PokemonComplete = () => {
-
+export const PokemonComplete = (props) => {
+    return (
+        <Modal>
+            <div className="pokemon__details_container">
+               
+                <span>Height: {" "}</span> <span>{props.pokemon.height}{" "}m</span>
+                <span>Weight: {" "}</span> <span>{props.pokemon.weight}{" "}m</span>
+                {props.pokemon.abilities.map((ability, i) => {
+                    return (
+                        <div key={i} id={i} className="card__pokemon__type">
+                            {ability.ability.name}
+                        </div>
+                    );
+                })}
+                {props.pokemon.moves.map((move, i) => {
+                    return (
+                        <div key={i} id={i} className="card__pokemon__type">
+                            {move.move.name}
+                        </div>
+                    );
+                })} 
+            </div>
+        </Modal>
+    )
 }
 
 

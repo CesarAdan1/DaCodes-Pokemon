@@ -26,8 +26,10 @@
         &__message {
             display: flex;
             justify-content: center;
-            position: absolute;
+            width: 100%;
             color: white;
+            height: 100vh;
+            z-index: 100;
         }
     }
 }
@@ -47,8 +49,10 @@
           &__message {
             display: flex;
             justify-content: center;
-            position: absolute;
+            width: 100%;
             color: white;
+            height: 100vh;
+            z-index: 100;
         }
     }
 }
@@ -68,8 +72,10 @@
           &__message {
             display: flex;
             justify-content: center;
-            position: absolute;
+            width: 100%;
             color: white;
+            height: 100vh;
+            z-index: 100;
         }
     }
 }
@@ -89,8 +95,10 @@
           &__message {
             display: flex;
             justify-content: center;
-            position: absolute;
+            width: 100%;
             color: white;
+            height: 100vh;
+            z-index: 100;
         }
     }
 }
@@ -110,8 +118,10 @@
           &__message {
             display: flex;
             justify-content: center;
-            position: absolute;
+            width: 100%;
             color: white;
+            height: 100vh;
+            z-index: 100;
         }
     }
 }

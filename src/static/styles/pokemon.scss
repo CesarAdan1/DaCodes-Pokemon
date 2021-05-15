@@ -36,34 +36,40 @@
     padding-top: 2px;
   }
 
-  &__number--prefix {}
+  &__number--prefix {
+    font-family: "Flexo-Bold",arial,sans-serif;
+    color: #919191;
+    font-size: 80%;
+    padding-top: 2px;
+  }
 
   &__name {
     font-size: 115%;
     font-family: "Flexo-Demi",arial,sans-serif;
-    color: #313131;
+    color: white;
     text-transform: Capitalize;
     font-size: 145%;
     margin-bottom: 5px;
 }
 
   &__abilities {
-
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
   }
 
   &__type {
     font-family: "Flexo-Medium",arial,sans-serif;
     border-radius: 10px;
     line-height: 18px;
-    width: 38.4375%;
+    width: 45%;
     height: 26px;
-    text-transform: none;
+    text-transform: Capitalize;
     display: flex;
     font-size: 11px;
     text-align: center;
     background: white;
     border: 1px solid black;
-    width: 100%;
     justify-content: center;
     align-items: center;
   }  

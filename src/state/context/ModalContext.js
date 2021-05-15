@@ -1,18 +1,25 @@
-import React, { createContext, useEffect, useState} from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
 export const ModalContext = createContext();
 
 const ModalProvider = (props) => {
 
-    const [idPokemon, saveIdPokemon] = useState(null);
-    const [ information, saveInformationPokemon ] = useState({});
+    const [details, getDetails] = useState([]);
+    const [information, saveInformationPokemon] = useState({});
 
     useEffect(() => {
 
     }, []);
 
+    const modalProvider = {
+        details,
+        getDetails
+    }
+
     return (
-        <ModalContext.Provider>
+        <ModalContext.Provider
+            value={modalProvider}
+        >
             {props.children}
         </ModalContext.Provider>
     )
