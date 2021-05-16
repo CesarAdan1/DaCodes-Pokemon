@@ -1,14 +1,22 @@
 .poke-card {
-        background-color: white;
-        width: 326px;
-        border-radius: 16px;
-        overflow: hidden;
-        -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 13;
+        flex-direction: column;
 
         &__content {
                 display: -webkit-box;
                 display: -ms-flexbox;
+                border-radius: 9px;
+                border-bottom-left-radius: 0px;
+                border-bottom-right-radius: 0px;
                 display: flex;
                 -webkit-box-orient: vertical;
                 -webkit-box-direction: normal;
@@ -17,16 +25,19 @@
                 -webkit-box-align: center;
                 -ms-flex-align: center;
                 align-items: center;
+                width: 80%;
+                height: 60%;
+                overflow-y: auto;
+                min-height: 200px;
+                background-color: white;
+                padding: 25px;
                 border-bottom: 1px solid rgba(153, 153, 153, 0.383);
         }
 
         &__btn {
-                width: auto;
+                border-bottom-left-radius: 9px;
+                border-bottom-right-radius: 9px;
+                width: 88.1%;
+                height: 40px;
         }
-
-        &__close {
-                width: 100%;
-        }
-
-
 }

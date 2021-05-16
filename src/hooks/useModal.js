@@ -1,43 +1,22 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { useState } from 'react'
 
-export const useClickOutsideListenerRef = () => {
-    const ref = useRef(null)
-    const escapeListener = useCallback((e) => {
-        if(e.key === 'Escape'){
-            onClose()
-        }
-    }, [])
-
-    const clickListener = useCallback((e) => {
-        if(!(ref.current).contains(e.target)){
-            onClose?.()
-        }
-    }, [ref.current])
-
-    useEffect(() => {
-        document.addEventListener('click', clickListener)
-        document.addEventListener('keyup', escapeListener)
-        return () => {
-            document.removeEventListener('click', clickListener)
-            document.removeEventListener('keyup', escapeListener)
-        }
-    }, [])
-    return ref
+export const useModal = (initialMode = false) => {
+    const [modalOpen, setModalOpen] = useState(initialMode)
+    const toggle = () => setModalOpen(!modalOpen)
+    return [modalOpen, setModalOpen, toggle]
 }
 
-
-export const useClickOutside = (ref, callback) => {
-    const handleClick = e => {
-        if(ref.current && !ref.current.contains(e.target)){
-            callback();
-        }
+export const useModalWithData = (
+    initialMode = false,
+    initialSelected = null
+  ) => {
+    const [modalOpen, setModalOpen] = useModal(initialMode)
+    const [selected, setSelected] = useState(initialSelected)
+    const setModalState = state => {
+      setModalOpen(state)
+      if (state === false) {
+        setSelected(null)
+      }
     }
-
-    useEffect(() => {
-        document.addEventListener('click', handleClick);
-
-        return () => {
-            document.removeEventListener('click', handleClick);
-        }
-    })
-}
+    return { modalOpen, setModalOpen, selected, setSelected, setModalState }
+  }

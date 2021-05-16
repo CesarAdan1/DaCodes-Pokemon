@@ -1,31 +1,30 @@
-import React, { useState, useRef } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import '../../static/styles/modal.scss'
-import { useClickOutsideListenerRef, useClickOutside } from '../../hooks/useModal';
 
-const Modal = (props) => {
-    const [close, setClose] = useState(true);
+const Modal = ({  children, shown, close  }) => {
+  return shown ? (
+    <div
+      className="poke-card"
+      onClick={() => {close();}}
+    >
+      <div
+        className="poke-card__content"
+        onClick={e => {e.stopPropagation()}}
+      >
+        {children}
+      </div>
+      <button className="poke-card__btn" onClick={close}>Close</button>
 
-    const ref = useRef();
-
-    useClickOutside(ref, () => {
-        if (close) setClose(false)
-    });
-
-    return (
-        <>
-            {setClose && (
-                <div className="poke-card">
-                    <div className="poke-card__content">
-                        {props.children}
-                    </div>
-                    <div className="poke-card__btn">
-                        <span className="poke-card__close" onClick={() => setClose(false)}>Cerrar</span>
-                    </div>
-                </div>
-            )
-            }
-        </>
-    )
+    </div>
+  ) : null;
 }
 
-export default Modal
+Modal.propTypes = {
+  children: PropTypes.element.isRequired,
+  title: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired
+}
+
+export default Modal;
