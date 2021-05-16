@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom'
 import '../../static/styles/pokemon.scss'
 import { CatchedPokemonContext } from '../../state/context/CatchedPokemonContext';
 import Modal from '../modal/Modal';
-
+import { LanguageContext } from '../../state/context/LanguageContext';
+import { convertionWeight, convertionHeight } from '../../constants/convertions';
+import Translate from '../../translations/languages/translate.js';
 
 const PokemonDescription = (props) => {
 
-    const { pokemon } = props;
-    const { catchedPokemon, savedIdPokemon } = useContext(CatchedPokemonContext);
+    const { pokemon, onChangeLanguage = () => {} } = props;
+    const { catchedPokemon, savedIdPokemon, languageChanged, setLanguageChange } = useContext(CatchedPokemonContext);
     const [modalShown, toggleModal] = useState(false);
 
     const PokeballRed = <img
@@ -35,7 +37,6 @@ const PokemonDescription = (props) => {
     return (
         <>
             <li data-testid="item-container" className="pokemon-item">
-
                 <figure className="pokemon-item__fg">
                     <Link to={`/pokemon/${pokemon.name}`} title={pokemon.name}>
                         <img className="pokemon-item__img"
@@ -43,9 +44,9 @@ const PokemonDescription = (props) => {
                             alt={pokemon.name}
                         />
                     </Link>
-                    <button onClick={catchPokemon} className="pokemon-item__catched-btn">
+                    {/* <button onClick={catchPokemon} className="pokemon-item__catched-btn">
                         <div className="pokemon-item__favorite">{pokeballGray}</div>
-                    </button>
+                    </button> */}
                 </figure>
 
                 <div className="pokemon-item__poke--info">
@@ -67,6 +68,7 @@ const PokemonDescription = (props) => {
                 </div>
                 <div className="pokemon-item__card-bottom">
                     <button
+                        onClick={() => onChangeLanguage(pokemon)}
                         className="pokemon-item__btn-more"
                         onClick={() => { toggleModal(!modalShown) }}
                     >Ver más</button>
@@ -79,15 +81,20 @@ const PokemonDescription = (props) => {
                 close={() => { toggleModal(false) }}
             >
                 <div className="pokemon__details_container">
-                    <h2 style={{
+                    <h2 
+                    onClick={() => { }}
+                    style={{
                         display: 'flex',
                         justifyContent: 'center',
                         textTransform: 'capitalize'}}>
                     {pokemon.name}</h2>
                 <div className="pokemon__details_container--measures">
                     <h2 className="pokemon__details_container--title">Measures</h2>
-                    <span className="pokemon__details_container-H">Height: {" "}</span> <span className="pokemon__details_container--Hnumber">{props.pokemon.height}{" "}m</span>
-                    <span className="pokemon__details_container-W">Weight: {" "}</span> <span className="pokemon__details_container-Wnum">{props.pokemon.weight}{" "}m</span>
+                    <span className="pokemon__details_container-H">{ Translate.parse("HEIGHT")}: </span> 
+                        {" "}
+                    <span className="pokemon__details_container--Hnumber">{convertionHeight(props.pokemon.height)}{" "}m</span>
+                    <span className="pokemon__details_container-W">{ Translate.parse("WEIGHT")}: {" "}</span> 
+                    <span className="pokemon__details_container-Wnum">{convertionWeight(props.pokemon.weight)}{" "}kg</span>
                 </div>
                 <div>
                     <h2 className="pokemon__details_container--title">Abilities</h2>
@@ -120,31 +127,158 @@ const PokemonDescription = (props) => {
     )
 }
 
-export const PokemonComplete = (props) => {
-    return (
-
-        <div className="pokemon__details_container">
-
-            <span>Height: {" "}</span> <span>{props.pokemon.height}{" "}m</span>
-            <span>Weight: {" "}</span> <span>{props.pokemon.weight}{" "}m</span>
-            {props.pokemon.abilities.map((ability, i) => {
-                return (
-                    <div key={i} id={i} className="card__pokemon__type">
-                        {ability.ability.name}
-                    </div>
-                );
-            })}
-            {props.pokemon.moves.map((move, i) => {
-                return (
-                    <div key={i} id={i} className="card__pokemon__type">
-                        {move.move.name}
-                    </div>
-                );
-            })}
-        </div>
-
-    )
-}
-
-
 export default PokemonDescription;
+
+// {
+//     "name": "daCodes",
+//     "version": "1.0.0",
+//     "description": "",
+//     "main": "index.js",
+//     "scripts": {
+//       "start": "webpack-dev-server --watch --config webpack.config.dev.js",
+//       "build": "webpack --config webpack.config.prod.js",
+//       "dev": "webpack-dev-server --watch --config webpack.config.dev.js",
+//       "prebuild": "npm run clean",
+//       "deploy": "aws s3 cp ./build s3://${S3BUCKET}/ --recursive",
+//       "test": "jest --verbose",
+//       "clean": "rm -rf build/*",
+//       "test:watch": "jest --watch",
+//       "test:coverage": "jest --coverage --colors",
+//       "eject": "react-scripts eject",
+//       "lint": "eslint --fix src/**/*.js",
+//       "format": "prettier src/**/*.js --write  --config"
+//     },
+//     "homepage": "dacode-poke-api",
+//     "author": "César Adán Juárez Calderón",
+//     "license": "ISC",
+//     "dependencies": {
+//       "@babel/types": "^7.14.2",
+//       "@sentry/browser": "^5.21.1",
+//       "@testing-library/react": "^11.2.6",
+//       "axios": "^0.21.1",
+//       "babel-preset-jest": "^26.6.2",
+//       "bloomer": "^0.6.5",
+//       "date-fns": "^2.21.2",
+//       "i18next": "^20.2.2",
+//       "identity-obj-proxy": "^3.0.0",
+//       "jest-dom": "^4.0.0",
+//       "pretty": "^2.0.0",
+//       "react": "^16.13.1",
+//       "react-dom": "^16.13.1",
+//       "react-helmet": "^5.2.1",
+//       "react-router-dom": "^5.2.0",
+//       "react-svg-loader": "^3.0.3",
+//       "react-test-render": "^1.1.2",
+//       "source-map-loader": "^0.2.4"
+//     },
+//     "devDependencies": {
+//       "@babel/cli": "^7.10.5",
+//       "@babel/core": "^7.11.1",
+//       "@babel/plugin-proposal-class-properties": "^7.13.0",
+//       "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
+//       "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+//       "@babel/plugin-transform-react-constant-elements": "^7.13.13",
+//       "@babel/plugin-transform-react-inline-elements": "^7.12.13",
+//       "@babel/plugin-transform-runtime": "^7.13.15",
+//       "@babel/preset-env": "^7.14.2",
+//       "@babel/preset-react": "^7.13.13",
+//       "@babel/runtime": "^7.13.17",
+//       "@svgr/webpack": "^5.5.0",
+//       "babel-jest": "^24.9.0",
+//       "babel-loader": "^8.1.0",
+//       "babel-plugin-inline-import": "^3.0.0",
+//       "babel-plugin-inline-react-svg": "^1.1.1",
+//       "babel-plugin-module-resolver": "^3.2.0",
+//       "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+//       "connected-react-router": "^6.8.0",
+//       "css-loader": "^3.6.0",
+//       "css-minimizer-webpack-plugin": "^2.0.0",
+//       "dotenv": "^8.2.0",
+//       "dotenv-webpack": "^1.8.0",
+//       "enzyme": "^3.11.0",
+//       "enzyme-adapter-react-16": "^1.15.3",
+//       "enzyme-to-json": "^3.5.0",
+//       "eslint-config-prettier": "^7.2.0",
+//       "eslint-plugin-cypress": "^2.11.1",
+//       "eslint-plugin-prettier": "^3.3.1",
+//       "eslint-plugin-react": "^7.22.0",
+//       "eslint-plugin-react-hooks": "^4.2.0",
+//       "extract-loader": "^3.2.0",
+//       "favicons-webpack-plugin": "^4.2.0",
+//       "html-loader": "^1.2.1",
+//       "html-webpack-plugin": "^4.3.0",
+//       "jest": "^24.9.0",
+//       "jest-enzyme": "^7.1.2",
+//       "jest-transform-graphql": "^2.1.0",
+//       "json": "^9.0.6",
+//       "lint-staged": "^10.5.3",
+//       "mini-css-extract-plugin": "^0.8.2",
+//       "node-sass": "^4.14.1",
+//       "optimize-css-assets-webpack-plugin": "^5.0.4",
+//       "parcel-bundler": "^1.12.4",
+//       "postcss": "^8.0.6",
+//       "postcss-cli": "^8.3.1",
+//       "postcss-loader": "^4.0.2",
+//       "prettier": "^2.1.2",
+//       "prop-types": "^15.7.2",
+//       "react-hot-loader": "^4.13.0",
+//       "react-redux": "^7.2.1",
+//       "react-scripts": "^3.4.3",
+//       "react-test-renderer": "^16.14.0",
+//       "resolve-url-loader": "^3.1.2",
+//       "sass-loader": "^10.1.1",
+//       "terser-webpack-plugin": "^4.2.3",
+//       "test-data-bot": "^0.8.0",
+//       "url-loader": "^2.3.0",
+//       "webpack": "^4.44.1",
+//       "webpack-cli": "^3.3.12",
+//       "webpack-dev": "^1.1.1",
+//       "webpack-dev-server": "^3.11.0",
+//       "webpack-merge": "^4.2.2",
+//       "workbox-webpack-plugin": "^6.1.5",
+//       "worker-loader": "^3.0.8"
+//     },
+//     "lint-staged": {
+//       "*.+(js|jsx)": [
+//         "eslint --fix",
+//         "git add"
+//       ],
+//       "*.+(js|jsx|json|md|css)": [
+//         "prettier --write",
+//         "git add"
+//       ],
+//       "src/**/*.scss": [
+//         "sass-lint -vq"
+//       ]
+//     },
+//     "jest": {
+//       "verbose": true,
+//       "unmockedModulePathPatterns": [
+//         "/node_modules/react",
+//         "/node_modules/react-dom",
+//         "/node_modules/react-addons-test-utils",
+//         "/node_modules/fbjs"
+//       ],
+//       "transform": {
+//         "^.+\\.js$": "babel-jest"
+//       },
+//       "transformIgnorePatterns": [
+//         "node_modules/(?!lodash-es/.*)",
+//         "/build"
+//       ],
+//       "collectCoverageFrom": [
+//         "src/**/*.{js,jsx,mjs}"
+//       ],
+//       "moduleFileExtensions": [
+//         "js",
+//         "json",
+//         "jsx"
+//       ],
+//       "testEnvironment": "jsdom",
+//       "moduleNameMapper": {
+//         "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+//         "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+//       }
+//     }
+//   }
+  

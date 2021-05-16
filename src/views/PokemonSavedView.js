@@ -5,12 +5,11 @@ import PokemonDescription from '../components/items/PokemonDescription';
 import '../static/styles/main-view.scss';
 
 const PokemonSavedView = (props) => {
-    console.log(props)
     const { catchedPokemon } = useContext(CatchedPokemonContext);
 
     return (
         <div className="main-pokemon">
-            <div>
+            <div className="main-pokemon__cont">
                 <h2 style={{color: 'white'}}>Pokemon Catched {" "}
                     <img
                         alt="Pokeball"
@@ -22,7 +21,7 @@ const PokemonSavedView = (props) => {
                     <span>{catchedPokemon.length}</span>
                 </h2>
             </div>
-            <div>
+            <div className="main-pokemon__savedPokemon">
                 {catchedPokemon.map(pokemon => (
                     <PokemonDescription
                         pokemon={pokemon}

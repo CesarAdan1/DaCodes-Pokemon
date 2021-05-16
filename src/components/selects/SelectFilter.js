@@ -1,6 +1,19 @@
 import React from 'react';
 import '../../static/styles/select.scss';
 
+const lang = {
+    es: 'es',
+    en: 'en',
+    ja: 'ja',
+  }
+
+  const languageId = {
+    es: 'Español',
+    en: 'English',
+    ja: 'Japones',
+  }
+
+  
 const SelectFilter = (props) => {
 
     const { name, value } = props;
@@ -11,12 +24,15 @@ const SelectFilter = (props) => {
                 className="select-filter"
                 name={name}
             >
-                <option value={value} className="selected-filter__option">
-                    Inglés
-                </option>
-                <option value={value} className="selected-filter__option">
-                    Japonés
-                </option>
+                <option>Hey</option>
+                {Object.keys(lang).map((language) => {
+                    <option 
+                        key={language}
+                        value={languageId[language]} 
+                        onClick={() => onChangeLanguage(language)} 
+                        className="selected-filter__option">
+                    </option>
+                })}
             </select>
         </div>
     )

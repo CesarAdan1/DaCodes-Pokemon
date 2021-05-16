@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { searchPokemon, getPokemon, getPokemonData } from '../../services/poke_api';
+import { searchPokemon, getPokemonLanguage, getPokemon, getPokemonData } from '../../services/poke_api';
 
 export const PokeContext = createContext();
 
@@ -23,21 +23,15 @@ const PokemonProvider = (props) => {
         try {
             setLoading(true);
             const data = await getPokemon(5, 5 * page);
-            console.log("mydata" + data)
             let dataPoke = data.results.map(async (pokemon) => {
                     let pokemonD = await getPokemonData(pokemon.url)
+                    //let lang = await getPokemonLanguage(1)
                     return pokemonD;
                 })
             let pokeData = await Promise.all(
                 dataPoke
             )
             
-            // data.results.map(async (poke) => {
-            //     console.log(poke.url + "url")
-            //     return await getPokemonData(poke.url);
-            // });
-            //const results = await Promise.all(promises);
-            console.log("result " + pokeData)
             setPokemon(pokeData);
             setLoading(false);
             setTotal(Math.ceil(data.count / 5));

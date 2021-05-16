@@ -1,19 +1,17 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useClickOutside } from '../../hooks/useOnClick'
-//import { useOnFocusOutside } from '../../hooks/useOnFocusOutside'
 import '../../static/styles/footer.scss';
 import PokemonFilterResultsView from '../../views/PokemonFilterResultsView';
 
 const Footer = () => {
-    const [toggleSearch, setToggleSearch] = useState(false);
-    const [showSearch, setShowSearch] = useState(false);
+    //const [toggleSearch, setToggleSearch] = useState(false);
 
-    const ref = useRef();
+    // const ref = useRef();
 
-    useClickOutside(ref, () => {
-        if (toggleSearch) setToggleSearch(false)
-    });
+    // useClickOutside(ref, () => {
+    //     if (toggleSearch) setToggleSearch(false)
+    // });
 
     return (
         <>
@@ -32,7 +30,6 @@ const Footer = () => {
                     </Link>
                 </button>
                 <button className="iyM5vw Qkd66A ubW6qw fP4ZCw GnpDIA _5RSqIg fFOiLQ" type="button" title="Pedidos">
-                    <Link to="/pokemoncatched" draggable="false">
                         <div className="footer--item">
                             <span aria-hidden="true" className=".NA_Img dkWypw">
                                 <img
@@ -44,7 +41,6 @@ const Footer = () => {
                             </span>
                             <span className="eRxiIQ UXYZvg">Catched 'em</span>
                         </div>
-                    </Link>
                 </button>
                 <button
                     className="iyM5vw Qkd66A ubW6qw fP4ZCw GnpDIA _5RSqIg fFOiLQ"
@@ -65,11 +61,11 @@ const Footer = () => {
                     </div>
                 </button>
             </footer>
-            {toggleSearch && (
+            {/* {toggleSearch && (
                 <PokemonFilterResultsView
                     onClick={() => setToggleSearch(false)}
                 />
-            )}
+            )} */}
         </>
     )
 }

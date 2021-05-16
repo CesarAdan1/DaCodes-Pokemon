@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export const searchPokemon = async (pokemon) => {
     try {
         let urlPokemon = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
@@ -25,7 +23,6 @@ export const getPokemon = async (limit = 5, offset = 0) => {
         let url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
         const response = await fetch(url)
         const data = await response.json()
-        //importconsole.log(dataPokemon5.data.results.url.sprites)
         console.log(data)
         
         return data;
@@ -35,6 +32,21 @@ export const getPokemon = async (limit = 5, offset = 0) => {
     }
 }
 
+export const getPokemonLanguage = async (url, id = 1) => {
+    try {
+        let url = `https://pokeapi.co/api/v2/language/${id}`;
+        const response = await fetch(url)
+        const data = await response.json()
+        console.log("hey" + data.names.map(lang => (
+            lang.name
+        )))
+        
+        return data;
+
+    } catch(err) {
+        console.log(err)
+    }
+}
 export const getPokemonData = async (urlpokemon) => {
     try {
         let pokeData = await fetch(urlpokemon);

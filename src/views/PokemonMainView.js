@@ -5,13 +5,9 @@ import SelectFilter from '../components/selects/SelectFilter';
 import Pagination from '../components/common/Pagination';
 import '../static/styles/main-view.scss';
 
-import Modal from '../components/modal/Modal'
-
 
 const PokemonMainView = (props) => {
-    console.log("main" + props)
     const { pokemon, loading, page, total, setPage } = useContext(PokeContext);
-    console.log("poke" + pokemon)
     const lastPage = () => {
         const nextPage = Math.max(page - 1, 0);
         setPage(nextPage);
