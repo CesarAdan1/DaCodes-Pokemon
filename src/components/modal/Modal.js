@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import '../../static/styles/modal.scss'
 
-const Modal = ({ children, shown, close }) => {
+const Modal = ({ children, shown, close, title }) => {
   return shown ? (
     <div
       className="poke-card"
@@ -14,7 +14,7 @@ const Modal = ({ children, shown, close }) => {
         >
           {children}
         </div>
-         <button className="poke-card__btn" onClick={close}>Close</button>
+         <button className="poke-card__btn" onClick={close}>{title}</button>
      
     </div>
   ) : null;
@@ -22,9 +22,9 @@ const Modal = ({ children, shown, close }) => {
 
 Modal.propTypes = {
   children: PropTypes.element.isRequired,
-  title: PropTypes.string,
-  isActive: PropTypes.bool,
-  handleClose: PropTypes.func
+  shown: PropTypes.bool,
+  close: PropTypes.func,
+  title: PropTypes.string.isRequired
 }
 
 export default Modal;

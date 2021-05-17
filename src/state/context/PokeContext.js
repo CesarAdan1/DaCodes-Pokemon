@@ -1,10 +1,13 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { searchPokemon, getPokemonLanguage, getPokemon, getPokemonData } from '../../services/poke_api';
+import { languages } from '../../constants/languages';
 
 export const PokeContext = createContext();
 
 const PokemonProvider = (props) => {
     const [pokemon, setPokemon] = useState([]);
+    const [language, setLanguage] = useState(null)
+    const [languageSelected, setLanguageSelected] = useState(languages.EN)
     const [searchPokemon, getSearchPokemon] = useState({
         name: '',
         number: '',
@@ -17,6 +20,7 @@ const PokemonProvider = (props) => {
     const [page, setPage] = useState(0);
     const [total, setTotal] = useState(0);
 
+
     const { name, number, type } = searchPokemon;
 
     const getAllPokemon = async () => {
@@ -24,14 +28,14 @@ const PokemonProvider = (props) => {
             setLoading(true);
             const data = await getPokemon(5, 5 * page);
             let dataPoke = data.results.map(async (pokemon) => {
-                    let pokemonD = await getPokemonData(pokemon.url)
-                    //let lang = await getPokemonLanguage(1)
-                    return pokemonD;
-                })
+                let pokemonD = await getPokemonData(pokemon.url)
+
+                return pokemonD;
+            })
             let pokeData = await Promise.all(
                 dataPoke
             )
-            
+
             setPokemon(pokeData);
             setLoading(false);
             setTotal(Math.ceil(data.count / 5));
@@ -41,19 +45,44 @@ const PokemonProvider = (props) => {
         }
     };
 
-    const showNotFound = () => {
-        return (
-            <div>
-                No se encontraron resultados
-            </div>
-        )
+    const getLanguage = (languageCode, resources) => {
+
+        try {
+
+            if (typeof languageCode !== "string")
+                throw new Error(".extractLanguage() expected a param of type string call languageCode, but received " + typeof languageCode.toUpperCase())
+
+            if (!languages.hasOwnProperty(languageCode.toUpperCase()))
+                throw new Error(".extractLanguage() expected a languageCode valid, but received " + languageCode.toUpperCase())
+
+            if (!Array.isArray(resources))
+                throw new Error(".extractLanguage() expected a param resources of type Array, but received " + typeof resources)
+
+            for (let resource of resources) {
+                if (resource.hasOwnProperty("language") && resource.language.hasOwnProperty("name") && resource.language.name.toUpperCase() === languageCode.toUpperCase()) {
+                    return resource;
+                }
+            }
+
+            return null;
+
+        } catch (error) {
+
+            console.log(error);
+
+            return null;
+
+        }
+
     }
 
-    //search
+    useEffect(() => {
+        getLanguage
+    }, []);
+
     useEffect(() => {
         if (!search) getAllPokemon();
     }, [page]);
-
     //show pokemon by 5
     useEffect(() => {
         getAllPokemon
@@ -71,7 +100,11 @@ const PokemonProvider = (props) => {
         page,
         total,
         setPage,
-        notFound
+        notFound,
+        languageSelected,
+        language,
+        setLanguage,
+        setLanguageSelected,
     }
 
     return (

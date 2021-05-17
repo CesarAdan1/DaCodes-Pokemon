@@ -1,40 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../static/styles/select.scss';
 
-const lang = {
-    es: 'es',
-    en: 'en',
-    ja: 'ja',
-  }
+const SelectFilter = () => {
 
-  const languageId = {
-    es: 'Español',
-    en: 'English',
-    ja: 'Japones',
-  }
-
-  
-const SelectFilter = (props) => {
-
-    const { name, value } = props;
+    const { highlight, onClick } = props;
 
     return (
-        <div>
-            <select
-                className="select-filter"
-                name={name}
-            >
-                <option>Hey</option>
-                {Object.keys(lang).map((language) => {
-                    <option 
-                        key={language}
-                        value={languageId[language]} 
-                        onClick={() => onChangeLanguage(language)} 
-                        className="selected-filter__option">
-                    </option>
-                })}
-            </select>
-        </div>
+        <button onClick={onClick} className="select-filter">
+            {highlight}
+        </button>
     )
 }
 

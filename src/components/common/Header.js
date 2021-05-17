@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import '../../static/styles/header.scss';
 
 const Header = () => {
@@ -8,9 +7,7 @@ const Header = () => {
         <header className="header">
             <div className="header__container">
                 <div className="header__catched">
-                    <Link to="/" draggable="false">
-                        <img src={imgUrl} alt="pokeapi-logo" />
-                    </Link>
+                    <img src={imgUrl} alt="pokeapi-logo" />
                 </div>
             </div>
         </header>
