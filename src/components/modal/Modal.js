@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import '../../static/styles/modal.scss'
+import { Text } from '../../state/context/LanguageContext';
 
 const Modal = ({ children, shown, close, title }) => {
   return shown ? (
@@ -14,9 +15,10 @@ const Modal = ({ children, shown, close, title }) => {
         >
           {children}
         </div>
+        <div className="poke-card__btn--cont">
          <button className="poke-card__btn" onClick={close}>{title}</button>
-     
-    </div>
+        </div>
+        </div>
   ) : null;
 }
 

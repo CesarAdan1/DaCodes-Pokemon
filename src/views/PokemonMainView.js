@@ -5,7 +5,8 @@ import Pagination from '../components/common/Pagination';
 import { languages, languagesPrefix, languagesLabel } from '../constants/languages';
 import '../static/styles/main-view.scss';
 import Translate from '../translations/languages/translate';
-
+import {LanguageSelector} from '../components/selectors/LanguageSelector';
+import { LanguageContext } from '../state/context/LanguageContext';
 
 const PokemonMainView = () => {
     const { pokemon, loading, page, total,
@@ -13,6 +14,8 @@ const PokemonMainView = () => {
         setLanguageSelectedES, language, setLanguage,
         languageSelectedES
     } = useContext(PokeContext);
+
+    const { dictionary } = useContext(LanguageContext);
 
     const lastPage = () => {
         const nextPage = Math.max(page - 1, 0);
@@ -39,26 +42,15 @@ const PokemonMainView = () => {
 
     }
 
+    const changeLanguageUI = () => {
+        setClickText(<Text tid="buttonClicked" />);
+      }
+    
     return (
         <div className="main-pokemon">
             <div className="main-pokemon__header">
                 <div style={{ display: 'flex', color: 'white', alignItems: 'center' }}>
-                    {Object.keys(languagesPrefix).map((langs) => (
-                        <button
-                            key={langs}
-                            style={{
-                                width: '30px',
-                                height: '20px',
-                                borderRadius: '5px',
-                                margin: '0 6px',
-                                fontWeight: '600',
-                                fontSize: '14px',
-                                textTransform: 'uppercase'
-                            }}
-                            onClick={changeLanguage(langs)}
-                        >{languagesPrefix[langs]}</button>
-
-                    ))}
+                   <LanguageSelector />
                 </div>
                 <Pagination
                     page={page + 1}
@@ -77,13 +69,12 @@ const PokemonMainView = () => {
                 : (
                     <div className="main-pokemon__container">
                         {
-                            pokemon.map((poke, id) => (
+                            pokemon.map((poke, id, dictionaryUI) => (
 
                                 <PokemonDescription
                                     key={id + 1}
                                     pokemon={poke}
-                                    language={languageSelected}
-                                    languageES={languageSelectedES}
+                                    dictionary={dictionaryUI}
                                 />
                             ))
                         }

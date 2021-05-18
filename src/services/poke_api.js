@@ -15,7 +15,7 @@ export const descriptionPokemon = async (id = '') => {
     try {
         let urlPokemon = `https://pokeapi.co/api/v2/pokemon-species/${id}`;
         const description =  await fetch(urlPokemon)
-        console.log(description)
+        console.log(description + "hey des")
         const dataD = description.json();
         
         return dataD;

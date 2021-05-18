@@ -31,7 +31,7 @@ const PokemonProvider = (props) => {
         e.preventDefault();
         setLanguageSelected(!Translate.loadLanguage(languageSelected.code));
         console.log(languageSelectedES)
-
+        //if(languageSelected.code === )
         return true
 
     }

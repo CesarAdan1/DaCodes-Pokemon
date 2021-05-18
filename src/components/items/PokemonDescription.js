@@ -3,11 +3,12 @@ import '../../static/styles/pokemon.scss'
 import Modal from '../modal/Modal';
 import { convertionWeight, convertionHeight } from '../../constants/convertions';
 import Translate from '../../translations/languages/translate';
-
+import { Text, LanguageContext } from '../../state/context/LanguageContext';
 
 const PokemonDescription = (props) => {
-    const { pokemon, language, languageEs } = props;
+    const { pokemon, dictionary, dictionaryData } = props;
     const [modalShown, toggleModal] = useState(false);
+//const { dictionary } = useContext(LanguageContext)
 
     return (
         <>
@@ -41,13 +42,15 @@ const PokemonDescription = (props) => {
                     <button
                         className="pokemon-item__btn-more"
                         onClick={() => { toggleModal(!modalShown) }}
-                    >{Translate.parse("SHOW_MORE")}</button>
+                    >
+                        <Text tid="SHOW_MORE"/>
+                    </button>
                 </div>
 
             </li>
 
             <Modal
-                title={Translate.parse("CLOSE")}
+                title={<Text tid="CLOSE"/>}
                 shown={modalShown}
                 close={() => { toggleModal(false) }}
             >
@@ -61,15 +64,15 @@ const PokemonDescription = (props) => {
                         }}>
                         {pokemon.name}</h2>
                     <div className="pokemon__details_container--measures">
-                        <h2 className="pokemon__details_container--title">{Translate.parse("MEASURES")}</h2>
-                        <span className="pokemon__details_container-H">{Translate.parse("HEIGHT")}: </span>
+                        <h2 className="pokemon__details_container--title"><Text tid="MEASURES"/></h2>
+                        <span className="pokemon__details_container-H"><Text tid="HEIGHT"/> </span>
                         {" "}
                         <span className="pokemon__details_container--Hnumber">{convertionHeight(props.pokemon.height)}{" "}m</span>
-                        <span className="pokemon__details_container-W">{Translate.parse("WEIGHT")}: {" "}</span>
+                        <span className="pokemon__details_container-W"><Text tid="WEIGHT"/>: {" "}</span>
                         <span className="pokemon__details_container-Wnum">{convertionWeight(props.pokemon.weight)}{" "}kg</span>
                     </div>
                     <div>
-                        <h2 className="pokemon__details_container--title">{Translate.parse("ABILITIES")}</h2>
+                        <h2 className="pokemon__details_container--title"><Text tid="ABILITIES"/></h2>
                         <div className="pokemon__details_container--sect">
                             {props.pokemon.abilities.map((ability, i) => {
                                 return (
@@ -81,13 +84,13 @@ const PokemonDescription = (props) => {
                         </div>
                     </div>
                     <div>
-                        <h2 className="pokemon__details_container--title">{Translate.parse("DESCRIPTION")}</h2>
+                        <h2 className="pokemon__details_container--title"><Text tid="DESCRIPTION"/></h2>
                         <div className="pokemon__details_container--sect">
                            {props.pokemon.species.flavor_text}
                         </div>
                     </div>
                     <div>
-                        <h2 className="pokemon__details_container--title">{Translate.parse("MOVEMENTS")}</h2>
+                        <h2 className="pokemon__details_container--title"><Text tid="MOVEMENTS"/></h2>
                         <div className="pokemon__details_container--sect">
                             {props.pokemon.moves.map((move, i) => {
                                 return (
