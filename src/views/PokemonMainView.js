@@ -1,19 +1,19 @@
 import React, { useContext, useEffect } from 'react';
 import { PokeContext } from '../state/context/PokeContext';
 import PokemonDescription from '../components/items/PokemonDescription';
-import SelectFilter from '../components/selects/SelectFilter';
 import Pagination from '../components/common/Pagination';
-import { languages } from '../constants/languages';
+import { languages, languagesPrefix, languagesLabel } from '../constants/languages';
 import '../static/styles/main-view.scss';
 import Translate from '../translations/languages/translate';
 
 
 const PokemonMainView = () => {
     const { pokemon, loading, page, total,
-        setPage, languageSelected, setLanguageSelected
+        setPage, languageSelected, setLanguageSelected,
+        setLanguageSelectedES, language, setLanguage,
+        languageSelectedES
     } = useContext(PokeContext);
 
-    console.log(languageSelected)
     const lastPage = () => {
         const nextPage = Math.max(page - 1, 0);
         setPage(nextPage);
@@ -24,41 +24,41 @@ const PokemonMainView = () => {
         setPage(nextPage);
     };
 
-    const changeLanguage = () => {
+    const changeLanguageEs = (e) => {
+        e.preventDefault();
+        setLanguageSelectedES(Translate.loadLanguage(languageSelectedES.code));
 
-        const makeTranslation = setLanguageSelected(Translate.loadLanguage(languageSelected.code));
-        console.log(languageSelected)
-        return makeTranslation
+        return true
+    }
+
+    const changeLanguage = () => {
+        setLanguageSelected(Translate.loadLanguage(languageSelected.code));
+        setLanguage(language);
+
+        return true
 
     }
-    
+
     return (
         <div className="main-pokemon">
             <div className="main-pokemon__header">
                 <div style={{ display: 'flex', color: 'white', alignItems: 'center' }}>
-                    <button
-                        style={{
-                            width: '30px',
-                            height: '20px',
-                            borderRadius: '5px',
-                            margin: '0 6px',
-                            fontWeight: '600',
-                            fontSize: '14px'
-                        }}
-                        onClick={() => changeLanguage(languageSelected.ES)}
-                    >ES</button>
-                    <span>{" "} | {" "}</span>
-                    <button
-                        style={{
-                            width: '30px',
-                            height: '20px',
-                            borderRadius: '5px',
-                            margin: '0 6px',
-                            fontWeight: '600',
-                            fontSize: '14px'
-                        }}
-                        onClick={() => changeLanguage(languageSelected.EN)}
-                    >EN</button>
+                    {Object.keys(languagesPrefix).map((langs) => (
+                        <button
+                            key={langs}
+                            style={{
+                                width: '30px',
+                                height: '20px',
+                                borderRadius: '5px',
+                                margin: '0 6px',
+                                fontWeight: '600',
+                                fontSize: '14px',
+                                textTransform: 'uppercase'
+                            }}
+                            onClick={changeLanguage(langs)}
+                        >{languagesPrefix[langs]}</button>
+
+                    ))}
                 </div>
                 <Pagination
                     page={page + 1}
@@ -66,7 +66,6 @@ const PokemonMainView = () => {
                     onLeftClick={lastPage}
                     onRightClick={nextPage}
                 />
-
             </div>
 
             {loading ?
@@ -84,6 +83,7 @@ const PokemonMainView = () => {
                                     key={id + 1}
                                     pokemon={poke}
                                     language={languageSelected}
+                                    languageES={languageSelectedES}
                                 />
                             ))
                         }

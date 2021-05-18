@@ -2,8 +2,8 @@ import React from 'react';
 import '../../static/styles/footer.scss';
 import Translate from '../../translations/languages/translate';
 
-const Footer = () => {
-
+const Footer = (props) => {
+    const { pokemon, language } = props;
     return (
         <>
             <footer id="menu-new">

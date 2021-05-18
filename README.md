@@ -18,9 +18,9 @@ This project was configured with webpack.
 4) * Optional you can go to the link inside this repo to 
     watch the project in action.
 
-##Usage
+#Usage
 
-##License 
+#License 
 
 [MIT]
 

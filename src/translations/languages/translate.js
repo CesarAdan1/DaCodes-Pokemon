@@ -1,4 +1,4 @@
-import { languages } from "../../constants/languages";
+import { languages, languagesPrefix } from "../../constants/languages";
 
 
 class Translate {
@@ -6,7 +6,7 @@ class Translate {
 
     constructor() {
 
-        this.byDefault = languages.ES;
+        this.byDefault = languages.EN;
         this.loadLanguage();
 
         return this;

@@ -1,13 +1,16 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { searchPokemon, getPokemonLanguage, getPokemon, getPokemonData } from '../../services/poke_api';
-import { languages } from '../../constants/languages';
+import { searchPokemon, getAbilityPokemon, getStatsPokemon, descriptionPokemon, getPokemonLanguage, getPokemon, getPokemonData } from '../../services/poke_api';
+import { languages, languagesPrefix, languagesLabel } from '../../constants/languages';
 
 export const PokeContext = createContext();
 
 const PokemonProvider = (props) => {
     const [pokemon, setPokemon] = useState([]);
-    const [language, setLanguage] = useState(null)
-    const [languageSelected, setLanguageSelected] = useState(languages.EN)
+    const [language, setLanguage] = useState(languagesPrefix.es)
+    const [languageES, setLanguageES] = useState(null)
+    const [languageSelected, setLanguageSelected] = useState(languagesPrefix.es)
+    const [languageSelectedES, setLanguageSelectedES] = useState(languages.ES)
+    const [description, setDescription] = useState([]);
     const [searchPokemon, getSearchPokemon] = useState({
         name: '',
         number: '',
@@ -23,13 +26,24 @@ const PokemonProvider = (props) => {
 
     const { name, number, type } = searchPokemon;
 
+        
+    const changeLanguage = (e) => {
+        e.preventDefault();
+        setLanguageSelected(!Translate.loadLanguage(languageSelected.code));
+        console.log(languageSelectedES)
+
+        return true
+
+    }
+
     const getAllPokemon = async () => {
         try {
             setLoading(true);
             const data = await getPokemon(5, 5 * page);
             let dataPoke = data.results.map(async (pokemon) => {
                 let pokemonD = await getPokemonData(pokemon.url)
-
+                console.log(pokemonD)
+                let pokeAbility
                 return pokemonD;
             })
             let pokeData = await Promise.all(
@@ -44,6 +58,15 @@ const PokemonProvider = (props) => {
             console.log(err)
         }
     };
+
+    const getDescription = async () => {
+        try {
+            const data = await descriptionPokemon()
+            setLoading(true);
+            setPokemon()
+            setLoading(false);
+        } catch(err){}
+    }
 
     const getLanguage = (languageCode, resources) => {
 
@@ -77,7 +100,7 @@ const PokemonProvider = (props) => {
     }
 
     useEffect(() => {
-        getLanguage
+        getLanguage()
     }, []);
 
     useEffect(() => {
@@ -85,7 +108,7 @@ const PokemonProvider = (props) => {
     }, [page]);
     //show pokemon by 5
     useEffect(() => {
-        getAllPokemon
+        getAllPokemon()
     }, []);
 
     useEffect(() => {
@@ -97,14 +120,19 @@ const PokemonProvider = (props) => {
         getSearchPokemon,
         savedSearch,
         loading,
+        changeLanguage,
         page,
         total,
         setPage,
         notFound,
         languageSelected,
         language,
+        languageES,
         setLanguage,
+        setLanguageES,
         setLanguageSelected,
+        setLanguageSelectedES,
+        languageSelectedES
     }
 
     return (

@@ -9,3 +9,12 @@ export const languages = {
     }
 };
 
+export const languagesPrefix = {
+    es: 'ES',
+    en: 'EN',
+  }
+  
+export const languagesLabel = {
+    es: 'Español',
+    en: 'English',
+  }
