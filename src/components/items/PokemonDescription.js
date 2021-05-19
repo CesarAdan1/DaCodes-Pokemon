@@ -2,14 +2,17 @@ import React, { useContext, useState } from 'react'
 import '../../static/styles/pokemon.scss'
 import Modal from '../modal/Modal';
 import { convertionWeight, convertionHeight } from '../../constants/convertions';
-import Translate from '../../translations/languages/translate';
-import { Text, LanguageContext } from '../../state/context/LanguageContext';
+import { Text, PokeContext } from '../../state/context/PokeContext';
 
 const PokemonDescription = (props) => {
-    const { pokemon, dictionary, dictionaryData } = props;
+    //console.log(props)
+    const { pokemon, dictionary, 
+        description, dictionaryPokemon,  
+    } = props;
+    console.log(pokemon)
+    //console.log(dictionary)
     const [modalShown, toggleModal] = useState(false);
-//const { dictionary } = useContext(LanguageContext)
-
+       
     return (
         <>
             <li data-testid="item-container" className="pokemon-item">
@@ -46,9 +49,8 @@ const PokemonDescription = (props) => {
                         <Text tid="SHOW_MORE"/>
                     </button>
                 </div>
-
             </li>
-
+                            
             <Modal
                 title={<Text tid="CLOSE"/>}
                 shown={modalShown}
@@ -86,7 +88,13 @@ const PokemonDescription = (props) => {
                     <div>
                         <h2 className="pokemon__details_container--title"><Text tid="DESCRIPTION"/></h2>
                         <div className="pokemon__details_container--sect">
-                           {props.pokemon.species.flavor_text}
+                        {/* {props.pokemon.flavor_text_entries.map((description, i) => (
+                            <h6 className="pokemon__details_container--Hnumber" key={i}>
+                                {description.flavor_text}
+                            </h6>
+                            
+                            ))} */}
+                            {/*console.log(data.flavor_text.language.name)*/}
                         </div>
                     </div>
                     <div>

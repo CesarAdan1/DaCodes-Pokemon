@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import '../../static/styles/modal.scss'
-import { Text } from '../../state/context/LanguageContext';
 
 const Modal = ({ children, shown, close, title }) => {
   return shown ? (

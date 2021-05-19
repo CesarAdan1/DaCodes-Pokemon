@@ -1,13 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 
 import { languageOptions } from '../../translations/languages';
-import { LanguageContext } from '../../state/context/LanguageContext';
+import { PokeContext } from '../../state/context/PokeContext';
 
 export const LanguageSelector = () => {
-  const { userLanguage, userLanguageChange } = useContext(LanguageContext);
+  const { userLanguage, userLanguageChange, descriptionLang} = useContext(PokeContext);
 
   const handleLanguageChange = e => {
     userLanguageChange(e.target.value);
+    descriptionLang
   }
 
   useEffect(() => {
@@ -16,6 +17,12 @@ export const LanguageSelector = () => {
 
   return (
     <select
+      style={{
+        borderRadius: '10px',
+        padding: '4px',
+        width: 'auto',
+        background: 'white'
+      }}
       onChange={handleLanguageChange}
       value={userLanguage}
     >

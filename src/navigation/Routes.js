@@ -6,7 +6,6 @@ import '../static/styles/container.scss';
 
 
 import Header from '../components/common/Header';
-import Footer from '../components/common/Footer';
 
 const Routes = () => {
     return (
@@ -20,7 +19,6 @@ const Routes = () => {
                     </Route>
                 </Switch>
             </div>
-            <Footer />
         </Router>
     )
 }
